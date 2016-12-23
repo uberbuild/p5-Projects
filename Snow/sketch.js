@@ -103,9 +103,17 @@ function Sun(){
   this.x = 0;
   this.y = height
   
-  this.draw = function(){
+  this.draw = function(){ 
     fill(255,255,0);
     ellipse(this.x, this.y, 30);
+
+    //TODO: Add function to add rotated pieces around the sun
+    push();
+    for(i=0;i < 6;i++){
+      rect(this.x, this.y - 30, 5, 15);
+      rotate(PI/6);
+    }
+    pop();
   }
 
   this.update = function(){
