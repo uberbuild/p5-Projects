@@ -26,24 +26,23 @@ function draw() {
   debugPara.html("Frame Rate: " +frameRate() + "</br>Last Snow Flakes: " + lastSnowFlakes + "</br> Num Snow Flakes: " + numSnowFlakes.value() + "</br> Snow Flakes Landed: " + snowFlakesFallenOnGround  + "</br> Number of Snow Flakes: " + snowFlakes.length);
   
   if(lastSnowFlakes != numSnowFlakes.value()){
-    snowFlakes.splice(i, lastSnowFlakes);
+    // snowFlakes.splice(i, lastSnowFlakes);
       
-    for(i=0;i<numSnowFlakes.value();i++){
-     snowFlakes[i] = new snowFlake();
+    // for(i=0;i<numSnowFlakes.value();i++){
+    //  snowFlakes[i] = new snowFlake();
+    // }
+    
+    if(numSnowFlakes.value() > lastSnowFlakes){
+
+      for(i=snowFlakes.length;i<numSnowFlakes.value();i++){
+        snowFlakes[i] = new snowFlake();
+      }
+    }else{
+      //Remove the difference in snow flakes from the array.
+      snowFlakes.splice(0, abs(numSnowFlakes.value() - lastSnowFlakes));
     }
     
-    // TODO: Smoothly update list of snowflakes when number of snow flakes changes.
     
-    // if(numSnowFlakes.value() > lastSnowFlakes){
-
-    //   for(i=snowFlakes.length;i<numSnowFlakes.value();i++){
-    //     snowFlakes[i] = new snowFlake();
-    //   }
-    // }
-    
-    // if(lastSnowFlakes > numSnowFlakes.value()){
-    //   splice(snowFlakes, "", );
-    // }
     
     lastSnowFlakes = numSnowFlakes.value();
   }
