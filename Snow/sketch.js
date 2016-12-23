@@ -1,31 +1,41 @@
 var snowFlakes = [];
+var catchableFlakes = [];
+var numToCatch;
 var numSnowFlakes;
 var lastSnowFlakes;
 var wind;
 var debugPara;
 var snowFlakesFallenOnGround = 0;
 var catcher;
-
+var maxWindspeed = 10;
+var snowFlakesCaught;
 
 function setup() {
   createCanvas(500, 500);
+  snowFlakesCaught = 0;
+  numToCatch = 5;
   numSnowFlakes = createSlider(10, 500, 100,5);
-  wind = createSlider(-20, 20, 0, 1);
+  wind = createSlider(-maxWindspeed, maxWindspeed, 0, 1);
   for(i=0;i<numSnowFlakes.value();i++){
     snowFlakes[i] = new snowFlake();
+  }
+  for(i=0;i<numToCatch;i++){
+    catchableFlakes[i] = new catchableFlake();
   }
   lastSnowFlakes = numSnowFlakes.value();
   debugPara = createP();
   catcher = new Umbrella();
+  noCursor();
+  noStroke();
+  bgColour = color("#0EA1FE");
 }
 
 function draw() {
-  bgColour = color("#0EA1FE");
-  background(bgColour);
-
-  noStroke();
   
-  debugPara.html("Frame Rate: " +frameRate() + "</br>Last Snow Flakes: " + lastSnowFlakes + "</br> Num Snow Flakes: " + numSnowFlakes.value() + "</br> Snow Flakes Landed: " + snowFlakesFallenOnGround  + "</br> Number of Snow Flakes: " + snowFlakes.length);
+  background(bgColour);
+  catcher.draw();
+
+  debugPara.html("Frame Rate: " + floor(frameRate()) + "</br>Last Snow Flakes: " + lastSnowFlakes + "</br> Num Snow Flakes: " + numSnowFlakes.value() + "</br> Snow Flakes Landed: " + snowFlakesFallenOnGround  + "</br> Number of Snow Flakes: " + snowFlakes.length);
   
   if(lastSnowFlakes != numSnowFlakes.value()){
     if(numSnowFlakes.value() > lastSnowFlakes){
@@ -38,8 +48,13 @@ function draw() {
       snowFlakes.splice(0, abs(numSnowFlakes.value() - lastSnowFlakes));
     }
     
-    catcher.draw();
     lastSnowFlakes = numSnowFlakes.value();
+  }
+
+  for(i=0;i<numToCatch;i++){
+    catchableFlakes[i].update();
+    catchableFlakes[i].show();
+    catchableFlakes[i].catched();
   }
   
   for(i=snowFlakes.length - 1; i > 0;i--){
