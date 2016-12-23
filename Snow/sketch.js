@@ -4,6 +4,7 @@ var lastSnowFlakes;
 var wind;
 var debugPara;
 var snowFlakesFallenOnGround = 0;
+var catcher;
 
 
 function setup() {
@@ -15,6 +16,7 @@ function setup() {
   }
   lastSnowFlakes = numSnowFlakes.value();
   debugPara = createP();
+  catcher = new Umbrella();
 }
 
 function draw() {
@@ -26,12 +28,6 @@ function draw() {
   debugPara.html("Frame Rate: " +frameRate() + "</br>Last Snow Flakes: " + lastSnowFlakes + "</br> Num Snow Flakes: " + numSnowFlakes.value() + "</br> Snow Flakes Landed: " + snowFlakesFallenOnGround  + "</br> Number of Snow Flakes: " + snowFlakes.length);
   
   if(lastSnowFlakes != numSnowFlakes.value()){
-    // snowFlakes.splice(i, lastSnowFlakes);
-      
-    // for(i=0;i<numSnowFlakes.value();i++){
-    //  snowFlakes[i] = new snowFlake();
-    // }
-    
     if(numSnowFlakes.value() > lastSnowFlakes){
 
       for(i=snowFlakes.length;i<numSnowFlakes.value();i++){
@@ -42,75 +38,12 @@ function draw() {
       snowFlakes.splice(0, abs(numSnowFlakes.value() - lastSnowFlakes));
     }
     
-    
-    
+    catcher.draw();
     lastSnowFlakes = numSnowFlakes.value();
   }
   
   for(i=snowFlakes.length - 1; i > 0;i--){
     snowFlakes[i].show();
     snowFlakes[i].update();
-  }
-
-}
-
-function snowFlake(){
-  this.x = random(-width/4, width);
-  this.y = random(0, height);
-  this.ySpeed = random(5, 20);
-
-  this.show = function(){
-    fill(255,255,255);
-    ellipse(this.x, this.y, map(this.ySpeed, 20, 5, 9, 1));
-  }
-  
-  this.update = function(){
-    this.y = this.y + this.ySpeed;
-    this.x = this.x + wind.value();
-    
-    if(this.y > height){
-      this.y = 0;
-      this.ySpeed = random(5, 20);
-      this.x = random(0,width);
-      snowFlakesFallenOnGround++;
-    }
-
-    if(this.x < 0){
-      this. x = width;
-    }
-    if(this.x > width){
-      this.x = 0;
-    }
-  }
-}
-
-
-function catchFlake(){
-  this.x = random(-width/4, width);
-  this.y = random(0, height);
-  this.ySpeed = random(3,9);
-  
-  this.show = function(){
-    fill(255,255,255);
-    ellipse(this.x, this.y, map(this.ySpeed, 9, 3, 20, 12));
-  }
-  
-  this.update = function(){
-    this.y = this.y + this.ySpeed;
-    this.x = this.x + wind.value();
-    
-    if(this.y > height){
-      this.y = 0;
-      this.ySpeed = random(5, 20);
-      this.x = random(0,width);
-      snowFlakesFallenOnGround++;
-    }
-
-    if(this.x < 0){
-      this. x = width;
-    }
-    if(this.x > width){
-      this.x = 0;
-    }
   }
 }
