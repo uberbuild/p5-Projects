@@ -10,9 +10,9 @@ function catchableFlake(){
   
   this.update = function(){
     this.y = this.y + this.ySpeed;
-    this.x = this.x + wind.value();
+    //this.x = this.x + wind.value();
     
-    if(this.y > height){
+    if(this.y > height - 50){
       this.x = random(width/4, (width/4)*3);
       this.y = random(0, -200);
       this.ySpeed = random(2,4);

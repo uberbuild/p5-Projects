@@ -35,6 +35,9 @@ function draw() {
   background(bgColour);
   catcher.draw();
 
+  fill("#fff");
+  textSize(32);
+  text(snowFlakesCaught, width/2, 50);
   debugPara.html("Frame Rate: " + floor(frameRate()) + "</br>Last Snow Flakes: " + lastSnowFlakes + "</br> Num Snow Flakes: " + numSnowFlakes.value() + "</br> Snow Flakes Landed: " + snowFlakesFallenOnGround  + "</br> Number of Snow Flakes: " + snowFlakes.length);
   
   if(lastSnowFlakes != numSnowFlakes.value()){

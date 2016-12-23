@@ -12,5 +12,8 @@ function Umbrella(){
     noFill();
     arc(mouseX, height-85, 50, 50, PI, TWO_PI);
     pop();
+
+    fill(0);
+    point(this.x, this.y);
   }
 }
