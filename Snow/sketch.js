@@ -64,4 +64,7 @@ function draw() {
     snowFlakes[i].show();
     snowFlakes[i].update();
   }
+
+  fill(255);
+  text(snowFlakesCaught, width/2, 80);
 }
