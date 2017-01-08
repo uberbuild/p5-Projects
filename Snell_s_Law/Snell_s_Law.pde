@@ -9,15 +9,14 @@ float n1, n2;
 void setup() {
   size(1920, 1080);
   n1 = 1;
-  n2 = 1.4;
+  n2 = 3;
   
 }
 
 void draw() {
-  incidentAngle = toRad(angle);
   
-  float a = mouseY - height/2;
-  float o = width/2 - boxwidth/2 - 50;
+  float o = mouseY - height/2;
+  float a = width/2 - boxwidth/2 - 50;
   incidentAngle = atan(o/a);
   
   background(255, 255, 0);
@@ -35,7 +34,6 @@ void draw() {
   line(width/2-boxwidth/2, height/2, width/2+boxwidth/2, height/2 - roffset);
   
   line(width/2+boxwidth/2, height/2-roffset, width - 50, height/2 - offset - roffset);
-  angle+=5;
 }
 
 float toRad(float degrees){
