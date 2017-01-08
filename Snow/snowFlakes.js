@@ -4,7 +4,7 @@ function snowFlake(){
   this.ySpeed = random(5, 20);
 
   this.show = function(){
-    fill(255,255,255);
+    fill(color("rgba(255,255,255,"+map(this.ySpeed, 20, 5, 0.8, 1) +")"));
     ellipse(this.x, this.y, map(this.ySpeed, 20, 5, 9, 1));
   }
   
