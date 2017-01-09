@@ -7,7 +7,7 @@ float n1, n2;
 
 
 void setup() {
-  size(1920, 1080);
+  size(1600, 900);
   n1 = 1;
   n2 = 1.3;
   
@@ -28,7 +28,7 @@ void draw() {
   line(50, height/2, width/2-boxwidth/2, height/2);
   
   float refractedAngle = asin(n1 * sin(incidentAngle) / n2);
-  println("Refracted Angle: " + toDegrees(refractedAngle));
+  //println("Refracted Angle: " + toDegrees(refractedAngle));
   
   float roffset = tan(refractedAngle) * boxwidth; //Refracted Offset in Radians
   line(width/2-boxwidth/2, height/2, width/2+boxwidth/2, height/2 - roffset);
